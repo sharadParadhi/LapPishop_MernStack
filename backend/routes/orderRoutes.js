@@ -2,7 +2,7 @@ import express from 'express'
 
 
 import { param,check } from 'express-validator';
-import { addOrderItems } from '../controllers/orderController.js';
+import { addOrderItems, getOrderById } from '../controllers/orderController.js';
 import validationRequest from '../middleware/validator.js';
 import { auth } from '../middleware/authMiddleware.js';
 
@@ -35,10 +35,14 @@ const validator = {
       check('totalPrice')
         .notEmpty().withMessage('Total price is required')
         .isNumeric().withMessage('Total price must be a number')
+    ],
+    getOrderById:[
+      param('id').notEmpty().withMessage('Id is required').isMongoId().withMessage('Invalid id Format')
     ]
   };
   
 
 router.route('/').post(validator.addOrderItems,validationRequest,auth,addOrderItems)
+router.route('/:id').get(validator.getOrderById,validationRequest,getOrderById)
 
 export default router

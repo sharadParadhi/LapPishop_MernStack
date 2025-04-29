@@ -29,30 +29,14 @@ const addOrderItems = async (req, res, next) => {
       throw new Error('No order items.');
     }
 
-    // const order = new Order({
-    //   user: req.user._id,
-    //   orderItems: cartItems.map(item => ({
-    //     ...item,
-    //     product: item._id
-    //   })),
-    //   shippingAddress,
-    //   paymentMethod,
-    //   itemsPrice,
-    //   taxPrice,
-    //   shippingPrice,
-    //   totalPrice
-    // });
-
-    // const createdOrder = await order.save();
-
     console.log("user form request=>",req.user,req.body)
 
     const order = new Order({
       user:req.user._id,
       orderItems:cartItems.map((item)=>({
         ...item,
+        product:item._id
       })),
-      product:item._id,
       shippingAddress,
       paymentMethod,
       taxPrice,
@@ -184,9 +168,9 @@ const getOrders = async (req, res, next) => {
 
 export {
   addOrderItems,
-  // getMyOrders,
-  // getOrderById,
-  // updateOrderToPaid,
-  // updateOrderToDeliver,
-  // getOrders
+  getMyOrders,
+  getOrderById,
+  updateOrderToPaid,
+  updateOrderToDeliver,
+  getOrders
 };

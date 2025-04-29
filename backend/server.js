@@ -11,6 +11,7 @@ import passport from "passport";
 import session from "express-session";
 import User from "./models/userModel.js";
 import router from "./routes/auth.js";
+import payments from './routes/paymentRoutes.js'
 import mongoose from "mongoose";
 import orderRoutes from "./routes/orderRoutes.js"
 // import { orderRouter } from "./routes/orderRoutes.js";
@@ -25,9 +26,8 @@ app.use(express.json());
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/products", productRoutes);
-app.use("/api/v1/orders",orderRoutes)
-
-
+app.use("/api/v1/orders",orderRoutes);
+app.use('/api/v1/payment',payments)
 
 
 app.get("/", async (req, res) => {
