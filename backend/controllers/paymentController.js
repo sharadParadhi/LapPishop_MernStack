@@ -1,11 +1,17 @@
 import crypto from 'crypto';
 import Razorpay from 'razorpay';
 
-const config = (req, res) =>
-  res.send({
-    razorpayKeyId: process.env.RAZORPAY_KEY_ID,
-    razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET
-  });
+// const config = (req, res) =>
+//   res.send({
+//     razorpayKeyId: process.env.RAZORPAY_KEY_ID,
+//     razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET
+//   });
+
+
+const config=(req,res)=>res.send({
+  razorpayKeyId:process.env.RAZORPAY_KEY_ID,
+  razorpayKeySecret:process.env.RAZORPAY_KEY_SECRET
+})
 
 const order = async (req, res, next) => {
   try {
@@ -14,7 +20,16 @@ const order = async (req, res, next) => {
       key_secret: process.env.RAZORPAY_KEY_SECRET
     });
 
-    const options = req.body;
+    console.log("razorpay-",razorpay)
+
+    // const options = req.body;
+    const options = {
+      amount: 1000 * 100, // in paise
+      currency: 'INR',
+      receipt: 'receipt#123'
+    };
+
+    console.log("req.body-",req.body)
 
     const order = await razorpay.orders.create(options);
 
@@ -24,6 +39,7 @@ const order = async (req, res, next) => {
     }
     res.status(201).json(order);
   } catch (error) {
+    console.log("Error",error.message)
     next(error);
   }
 };

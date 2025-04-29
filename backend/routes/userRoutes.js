@@ -39,7 +39,7 @@ userRoutes.route('/register')
     .post(validator.checkNewUser,validationRequest,register)
 
 userRoutes.post('/login',validator.checkLogin,validationRequest,login);
-userRoutes.post('/logout',auth,logout)
+userRoutes.post('/logout',logout)
 userRoutes.post('/reset-password/request',validator.resetPasswordRequest,validationRequest,resetPasswordReq)
 userRoutes.post('/reset-password/reset/:id/:token',validator.resetPassword,validationRequest,resetPassword)
 
