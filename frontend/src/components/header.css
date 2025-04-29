@@ -1,0 +1,39 @@
+
+*:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*:before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Styling for Nav.Link on the right side */
+.navbar .ms-auto .nav-link {
+    position: relative;
+    color: white; /* Optional: for color consistency */
+    padding: 0 0px;
+    width: 120px;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar .ms-auto .nav-link::after {
+    width: 0;
+    color: #e797d3; /* Optional: Change color on hover */
+  }
+  
+  .navbar .ms-auto .nav-link:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -13px;
+    width: 70%;
+    height: 2px;
+    background-color: #f97cd1; /* Color of underline */
+    transition: width 3s;
+  }
+  
