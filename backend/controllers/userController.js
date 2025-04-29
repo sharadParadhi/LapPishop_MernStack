@@ -81,7 +81,7 @@ const resetPasswordReq=async(req,res,next)=>{
             throw new Error("User not Exist")
         }
         const token=tokenGenerator(req,res,existUser._id);
-        const passwordResetLink=`http://localhost:3000/reset-password/${existUser._id}/${token}`
+        const passwordResetLink=`https://lap-pishop-mern-stack.vercel.app/reset-password/${existUser._id}/${token}`
 
         const transporter=nodemailer.createTransport({
             service:"gmail",
