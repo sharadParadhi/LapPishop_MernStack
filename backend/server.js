@@ -18,7 +18,7 @@ import orderRoutes from "./routes/orderRoutes.js"
 
 const app = express();
 app.use(cors({
-  origin:'https://lap-pishop-mern-stack.vercel.app',
+  origin:process.env.FRONTEND_URL,
   credentials:true
 }));
 app.use(cookiePaser());
