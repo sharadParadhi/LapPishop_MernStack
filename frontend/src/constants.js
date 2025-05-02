@@ -1,6 +1,6 @@
 // export const BASE_URL =
 // process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '';
-export const BASE_URL = 'https://lappishopmernstack-production.up.railway.app/';
+export const BASE_URL = 'https://lappishop-mernstack.onrender.com';
 // export const BASE_URL = 'http://localhost:5000';
 export const PRODUCTS_URL = '/api/v1/products';
 export const UPLOAD_URL = '/api/v1/upload';

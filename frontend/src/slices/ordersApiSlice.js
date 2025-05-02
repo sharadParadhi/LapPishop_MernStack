@@ -1,4 +1,4 @@
-import { ORDERS_URL, RAZORPAY_URL } from '../constants';
+import { BASE_URL, ORDERS_URL, RAZORPAY_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const ordersApiSlice = apiSlice.injectEndpoints({
@@ -28,7 +28,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     }),
     payOrder: builder.mutation({
       query: ({ orderId, details }) => ({
-        url: `http://localhost:5000${ORDERS_URL}/${orderId}/pay`,
+        url: `${BASE_URL}${ORDERS_URL}/${orderId}/pay`,
         method: 'PUT',
         body: { ...details },
         credentials: 'include'
@@ -37,7 +37,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     }),
     updateDeliver: builder.mutation({
       query: orderId => ({
-        url: `http://localhost:5000${ORDERS_URL}/${orderId}/deliver`,
+        url: `${BASE_URL}${ORDERS_URL}/${orderId}/deliver`,
         method: 'PUT',
         credentials: 'include'
       }),
@@ -45,7 +45,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     }),
     getRazorpayApiKey: builder.query({
       query: () => ({
-        url: `http://localhost:5000${RAZORPAY_URL}/razorpay/config`,
+        url: `${BASE_URL}${RAZORPAY_URL}/razorpay/config`,
         credentials: 'include'
       }),
       providesTags: ['Order']

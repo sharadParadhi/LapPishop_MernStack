@@ -12,6 +12,7 @@ import ProductCarousel from '../components/ProductCarousel';
 import ServerError from '../components/ServerError';
 import Meta from '../components/Meta';
 
+
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -19,6 +20,7 @@ const HomePage = () => {
   const [limit, setLimit] = useState(0);
   const [skip, setSkip] = useState(0);
   const { search } = useSelector(state => state.search);
+  
 
   const { data, isLoading, error } = useGetProductsQuery({
     limit,
