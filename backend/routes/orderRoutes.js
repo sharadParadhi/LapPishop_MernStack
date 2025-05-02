@@ -2,7 +2,7 @@ import express from 'express'
 
 
 import { param,check } from 'express-validator';
-import { addOrderItems, getOrderById } from '../controllers/orderController.js';
+import { addOrderItems, getOrderById, updateOrderToDeliver, updateOrderToPaid } from '../controllers/orderController.js';
 import validationRequest from '../middleware/validator.js';
 import { auth } from '../middleware/authMiddleware.js';
 
@@ -38,11 +38,19 @@ const validator = {
     ],
     getOrderById:[
       param('id').notEmpty().withMessage('Id is required').isMongoId().withMessage('Invalid id Format')
+    ],
+    updateOrderToPaid:[
+      param('id').notEmpty().withMessage("ID is required").isMongoId().withMessage("Invalid ID fromate")
+    ],
+    updateOrderToDeliver:[
+      param('id').notEmpty().withMessage('Id is required').isMongoId().withMessage('Invalid id Format')
     ]
   };
   
 
 router.route('/').post(validator.addOrderItems,validationRequest,auth,addOrderItems)
 router.route('/:id').get(validator.getOrderById,validationRequest,getOrderById)
+router.put('/:id/pay',validator.updateOrderToPaid, validationRequest,updateOrderToPaid)
+router.put('/:id/deliver',validator.updateOrderToDeliver,validationRequest,updateOrderToDeliver)
 
 export default router
