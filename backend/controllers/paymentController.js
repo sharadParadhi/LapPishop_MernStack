@@ -20,7 +20,7 @@ const order = async (req, res, next) => {
       key_secret: process.env.RAZORPAY_KEY_SECRET
     });
 
-    console.log("razorpay-",razorpay)
+    // console.log("razorpay-",razorpay)
 
     // const options = req.body;
     const options = {
@@ -29,7 +29,7 @@ const order = async (req, res, next) => {
       receipt: 'receipt#123'
     };
 
-    console.log("req.body-",req.body)
+    // console.log("req.body-",req.body)
 
     const order = await razorpay.orders.create(options);
 

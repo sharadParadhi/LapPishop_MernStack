@@ -129,4 +129,38 @@ const resetPassword=async(req,res,next)=>{
     }
 }
 
-export {register,login,logout,resetPasswordReq,resetPassword}
+
+const updateProfile=async(req,res,next)=>{
+    console.log("coming i n api")
+    try{
+        const {name,email, password}=req.body;
+        const user =await User.findById(req.user._id);
+        if(!user){
+            res.statusCode=404;
+            throw new Error('User not found. Unable to update profile')
+        }
+        user.name=name || user.name;
+        user.email=email || email;
+        if(password){
+            const hashedPassword=await bcrypt.hash(password,10);
+            user.password=hashedPassword;
+        }
+
+        const updatedUser=await user.save()
+        res.status(200).json({
+            message: 'User profile updated successfully.',
+            userId: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin
+          });
+
+    }catch(err){
+        next(err);
+    }
+}
+
+
+
+
+export {register,login,logout,resetPasswordReq,resetPassword,updateProfile}
