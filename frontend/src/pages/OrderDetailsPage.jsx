@@ -18,7 +18,7 @@ import ServerError from '../components/ServerError';
 import axios from 'axios';
 import Meta from '../components/Meta';
 import { addCurrency } from '../utils/addCurrency';
-// import { RAZORPAY_URL } from '../constants';
+import { BASE_URL, RAZORPAY_URL } from '../constants';
 const OrderDetailsPage = () => {
   const { id: orderId } = useParams();
   // console.log(useGetOrderDetailsQuery());
@@ -42,7 +42,7 @@ const OrderDetailsPage = () => {
         receipt: `receipt#${orderId}`
       };
       const { data } = await axios.post(
-        '/api/v1/payment/razorpay/order',
+        `${BASE_URL}${RAZORPAY_URL}/razorpay/order`,
         razorpayData
       );
 
@@ -52,14 +52,14 @@ const OrderDetailsPage = () => {
         key: razorpayApiKey.razorpayKeyId, // Enter the Key ID generated from the Dashboard
         amount: razorpayData.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency: razorpayData.currency,
-        name: 'MERN Shop', //your business name
+        name: 'LaPpyShop', //your business name
         description: 'Test Transaction',
         image: 'https://example.com/your_logo',
         order_id: razorpayOrderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         handler: async response => {
           try {
             const { data } = await axios.post(
-              `/api/v1/payment/razorpay/order/validate`,
+              `${BASE_URL}${RAZORPAY_URL}/razorpay/order/validate`,
               response
             );
             const details = { ...data, email: order?.user?.email };

@@ -29,6 +29,7 @@ import AdminListPage from '../pages/admin/AdminListPage';
 import ResetPasswordRequestPage from '../pages/ResetPasswordRequestPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import ProductsPage from '../pages/ProductsPage';
+import AuthSuccess from '../pages/AuthSuccess';
 
 
 const router = createBrowserRouter([
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
         element: <LoginPage />
       },
       {
+        path:'/auth-success',
+        element:<AuthSuccess/>
+      },
+      {
         path: '/register',
         element: <RegisterPage />
       },
@@ -92,7 +97,7 @@ const router = createBrowserRouter([
           {
             path: '/profile',
             element: <ProfilePage />
-          }
+          },
         ]
       }
     ]

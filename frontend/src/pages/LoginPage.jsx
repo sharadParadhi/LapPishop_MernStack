@@ -127,12 +127,12 @@ const LoginPage = () => {
       </Row>
      <span><hr></hr>Or<hr></hr></span>
 
-      <div className="container mt-5 w-100%">
+      {/* <div className="container mt-5 w-100%">
       <Button className="btn btn-primary w-auto" onClick={handleGoogleLogin} >
         <span > <FcGoogle size={30} style={{backgroundColor:"white",padding: "2px",marginRight:"10px"}} />  &nbsp; </span>
         Continue with Google
       </Button>
-    </div>
+    </div> */}
     </FormContainer>
   );
 };
