@@ -48,7 +48,7 @@ const validator = {
   };
   
 
-router.route('/').post(validator.addOrderItems,validationRequest,auth,addOrderItems)
+router.route('/').post(validator.addOrderItems,validationRequest,addOrderItems)
 router.route('/:id').get(validator.getOrderById,validationRequest,getOrderById)
 router.put('/:id/pay',validator.updateOrderToPaid, validationRequest,updateOrderToPaid)
 router.put('/:id/deliver',validator.updateOrderToDeliver,validationRequest,updateOrderToDeliver)
