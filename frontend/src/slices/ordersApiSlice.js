@@ -5,7 +5,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     createOrder: builder.mutation({
       query: order => ({
-        url: `http://localhost:5000${ORDERS_URL}`,
+        url: `${BASE_URL}${ORDERS_URL}`,
         method: 'POST',
         body: { ...order },
         credentials: 'include'
@@ -14,7 +14,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     }),
     getOrderDetails: builder.query({
       query: orderId => ({
-        url: `http://localhost:5000${ORDERS_URL}/${orderId}`,
+        url: `${BASE_URL}${ORDERS_URL}/${orderId}`,
         credentials: 'include'
       }),
       providesTags: ['Order']
@@ -52,7 +52,8 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     }),
     getOrders: builder.query({
       query: () => ({
-        url: ORDERS_URL
+        url: ORDERS_URL,
+        credentials:'include'
       }),
       providesTags: ['Order']
     })
