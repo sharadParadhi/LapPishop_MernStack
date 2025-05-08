@@ -53,7 +53,8 @@ const LoginPage = () => {
       navigate(redirect);
       toast.success('Login successful');
     } catch (error) {
-      toast.error(error?.message || error.error);
+      console.log('error=>',error)
+      toast.error(error?.data?.message || error.error);
     }
   };
   return (

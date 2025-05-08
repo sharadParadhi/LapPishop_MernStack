@@ -33,7 +33,7 @@ const Footer = () => {
           <Col md={2} className="mb-4">
             <h6>Quick Links</h6>
             <ul className="list-unstyled">
-              <li><a href="/shop" className="text-light text-decoration-none">Shop</a></li>
+              <li><a href="/products" className="text-light text-decoration-none">Shop</a></li>
               <li><a href="/about" className="text-light text-decoration-none">About Us</a></li>
               <li><a href="/contact" className="text-light text-decoration-none">Contact</a></li>
               <li><a href="/faq" className="text-light text-decoration-none">FAQ</a></li>
