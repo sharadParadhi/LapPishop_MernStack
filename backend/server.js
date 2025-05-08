@@ -17,14 +17,13 @@ import orderRoutes from "./routes/orderRoutes.js"
 // import { orderRouter } from "./routes/orderRoutes.js";
 
 const app = express();
+app.use(cookiePaser());
+app.use(express.json());
 app.use(cors({
   origin:process.env.FRONTEND_URL,
   credentials:true
 }));
 
-
-app.use(cookiePaser());
-app.use(express.json());
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/products", productRoutes);

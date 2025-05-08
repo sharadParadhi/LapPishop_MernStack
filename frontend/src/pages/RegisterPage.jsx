@@ -54,6 +54,7 @@ const RegisterPage = () => {
         navigate(redirect);
         toast.success('Registration successful. Welcome!');
       } catch (error) {
+        console.log("error-",error)
         toast.error(error?.data?.message || error.error);
       }
     }

@@ -7,7 +7,6 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: order => ({
         url: `${BASE_URL}${ORDERS_URL}`,
         method: 'POST',
-        credentials: 'include',
         body: { ...order }, 
       }),
       invalidatesTags: ['Order']
@@ -15,14 +14,12 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     getOrderDetails: builder.query({
       query: orderId => ({
         url: `${BASE_URL}${ORDERS_URL}/${orderId}`,
-        credentials: 'include'
       }),
       providesTags: ['Order']
     }),
     getMyOrders: builder.query({
       query: () => ({
         url: `${ORDERS_URL}/my-orders`,
-        credentials: 'include'
       }),
       providesTags: ['Order']
     }),
@@ -31,7 +28,6 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         url: `${BASE_URL}${ORDERS_URL}/${orderId}/pay`,
         method: 'PUT',
         body: { ...details },
-        credentials: 'include'
       }),
       invalidatesTags: ['Order']
     }),
@@ -39,21 +35,18 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: orderId => ({
         url: `${BASE_URL}${ORDERS_URL}/${orderId}/deliver`,
         method: 'PUT',
-        credentials: 'include'
       }),
       invalidatesTags: ['Order']
     }),
     getRazorpayApiKey: builder.query({
       query: () => ({
         url: `${BASE_URL}${RAZORPAY_URL}/razorpay/config`,
-        credentials: 'include'
       }),
       providesTags: ['Order']
     }),
     getOrders: builder.query({
       query: () => ({
         url: ORDERS_URL,
-        credentials:'include'
       }),
       providesTags: ['Order']
     })

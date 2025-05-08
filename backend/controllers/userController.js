@@ -13,7 +13,7 @@ const register=async(req,res,next)=>{
         
         if(existUser){
             res.statusCode=409;
-            throw new Error("User is already exist. Please try to different email")
+            res.json({message:"User is already exist. Please try to different email"})
         }
 
         const hashedPassword=await bcrypt.hash(password,10);
@@ -48,7 +48,7 @@ const login=async(req,res,next)=>{
         const checkPassword=await bcrypt.compare(password,existUser.password)
         if(!checkPassword){
             res.statusCode=401;
-            throw new Error("Invalid passowd, Please check your password and try again.")
+            res.json({message:"Invalid passowd, Please check your password and try again."})
         }
         const token=tokenGenerator(req,res,existUser._id)
        
@@ -78,7 +78,7 @@ const resetPasswordReq=async(req,res,next)=>{
         const existUser=await User.findOne({email});
         if(!existUser){
             res.statusCode=404;
-            throw new Error("User not Exist")
+            res.json({message:"User not Exist"})
         }
         const token=tokenGenerator(req,res,existUser._id);
         const passwordResetLink=`${process.env.FRONTEND_URL}/${existUser._id}/${token}`
@@ -118,7 +118,7 @@ const resetPassword=async(req,res,next)=>{
     const decodeToken= await jwt.verify(token,process.env.JWT_SECRET);
     if(!decodeToken){
         res.statusCode=401;
-        throw new Error("Invalid or expired token")
+        res.json({message:"Invalid or expired token"})
     };
     const hashedPassword=await bcrypt.hash(password,10);
     user.password=hashedPassword;
@@ -137,7 +137,8 @@ const updateProfile=async(req,res,next)=>{
         const user =await User.findById(req.user._id);
         if(!user){
             res.statusCode=404;
-            throw new Error('User not found. Unable to update profile')
+            // throw new Error('User not found. Unable to update profile')
+            res.json({message:"User not found. Unable to update profile"})
         }
         user.name=name || user.name;
         user.email=email || email;
