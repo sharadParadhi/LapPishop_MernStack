@@ -19,6 +19,7 @@ import axios from 'axios';
 import Meta from '../components/Meta';
 import { addCurrency } from '../utils/addCurrency';
 import { BASE_URL, RAZORPAY_URL } from '../constants';
+import axiosInstance from '../utils/axiosConfig';
 const OrderDetailsPage = () => {
   const { id: orderId } = useParams();
   // console.log(useGetOrderDetailsQuery());
@@ -41,7 +42,7 @@ const OrderDetailsPage = () => {
         currency: 'INR',
         receipt: `receipt#${orderId}`
       };
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${BASE_URL}${RAZORPAY_URL}/razorpay/order`,
         razorpayData
       );
@@ -58,7 +59,7 @@ const OrderDetailsPage = () => {
         order_id: razorpayOrderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         handler: async response => {
           try {
-            const { data } = await axios.post(
+            const { data } = await axiosInstance.post(
               `${BASE_URL}${RAZORPAY_URL}/razorpay/order/validate`,
               response
             );
