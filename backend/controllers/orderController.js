@@ -29,7 +29,6 @@ const addOrderItems = async (req, res, next) => {
       throw new Error('No order items.');
     }
 
-    console.log("user form request=>",req.user,req.body)
 
     const order = new Order({
       user:req.user._id,

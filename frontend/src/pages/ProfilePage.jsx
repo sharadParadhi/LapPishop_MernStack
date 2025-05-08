@@ -22,7 +22,7 @@ const ProfilePage = () => {
         </Col>
         <Col md={9}>
           <h2>My Orders</h2>
-          {isLoading ? (
+          {/* {isLoading ? (
             <Loader />
           ) : error ? (
             <Message variant='danger'>
@@ -71,7 +71,7 @@ const ProfilePage = () => {
                 ))}
               </tbody>
             </Table>
-          )}
+          )} */}
         </Col>
       </Row>
     </>
